@@ -1,2 +1,2 @@
 ## Latest
-This path will be continuously updated with the latest and greatest releases. For a specific version try ```v1/```, ```v2/``` etc.
+This path is used for testing of experimental features prior to release. Consider this path completely unstable, likely to be broken and/or changed frequently. For the latest version try ```latest/``` or for a specific version try ```v0/```, ```v1/```, ```v0/0/1``` etc.

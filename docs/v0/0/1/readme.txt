@@ -1,0 +1,1 @@
+version 0.0.1 did actually exist but I had to recall it so as to be able to remove my local version of fontawesome from the repo. I promise I won't pull any actual real versions of the product once I reach v1.
