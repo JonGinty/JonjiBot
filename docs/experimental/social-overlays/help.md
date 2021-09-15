@@ -14,8 +14,6 @@ This source does not require live refresh so it is safe to set the framerate to 
 
 ### Examples
 
-<https://jonginty.github.io/JonjiBot/latest/social-overlays/?type=twitch&name=jonji13&showurl=true>
-
-<https://jonginty.github.io/JonjiBot/latest/social-overlays/?type=youtube&name=jonji13>
+<{{site.url}}{{page.dir}}?type=twitch&name=jonji13&showurl=true>
 
 <{{site.url}}{{page.dir}}?type=youtube&name=jonji13>
