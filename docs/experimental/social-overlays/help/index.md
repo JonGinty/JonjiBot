@@ -13,9 +13,13 @@ This source does not require live refresh so it is safe to set the framerate to 
 - **showurl** - (*optional*) flag indicating whether to prefix your account name with the website url i.e. twitch.tv/yourname, not supported for instagram or facebook.
 
 ### Examples
+
 <https://jonginty.github.io/JonjiBot/latest/social-overlays/?type=twitch&name=jonji13&showurl=true>
 
 <https://jonginty.github.io/JonjiBot/latest/social-overlays/?type=youtube&name=jonji13>
 
+*testing, just ignore below*
+<{{page.url}}>
 
 
+<{{site.url}}>
