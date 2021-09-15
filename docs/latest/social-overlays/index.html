@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link href="../../external/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet" />
+        <script src="../utils/pathutils.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: 'consolas', monospace;
+            }
+            .url-ish {
+                display: flex;
+                align-items: center;
+                font-size: x-large;
+            }
+
+            .url-ish i {
+                margin-right: 5px;
+            }
+
+            .url-ish {
+                padding: 5px;
+                background-color: rgba(255,255,255,0.8);
+                color: #f93232;
+                border-radius: 5px;
+            }
+        </style>
+        
+        <span class="url-ish"><i id="social-icon" class="fab"></i><span id="social-name">test-youtube</span></span>
+        <span class="help-text" style="display: none;">Looks like you've called this without one or more of the required arguments.<br /> Don't worry, I included a handy guide on how to use this utility <a href="how/">here</a></span>
+        <script>
+            (function () {
+                const socials = [
+                    {
+                        type: "youtube",
+                        url: "youtube.com/",
+                        colour: "#f93232"
+                    },
+                    {
+                        type: "twitch",
+                        url: "twitch.tv/",
+                        colour: "#6441a5"
+                    },
+                    {
+                        type: "facebook",
+                        url: "",
+                        colour: "#4267B2",
+                        icon: "facebook-square"
+                    },
+                    {
+                        type: "twitter",
+                        url: "twitter.com/",
+                        colour: "#1DA1F2",
+                        icon: "twitter-square"
+                    },
+                    {
+                        type: "instagram",
+                        url: "",
+                        colour: "#F77737",
+                    },
+                ]
+
+                const args = getAllUrlParameters();
+                const showHelp = () => {
+                    document.querySelector(".url-ish").style.display = "none";
+                    document.querySelector(".help-text").style.display = "";
+                }
+
+                if (!args.type || !args.name) {
+                    showHelp();
+                    return;
+                }
+                
+                const social = socials.find(s => s.type === args.type);
+                if (!social) {
+                    showHelp();
+                    return;
+                }
+                
+                document.getElementById("social-icon").classList.add("fa-" + (social.icon || args.type));
+                document.getElementById("social-name").innerText = (args.showurl ? social.url : "") + args.name;
+                document.querySelector(".url-ish").style.color = social.colour;
+
+            }());
+        </script>
+    </body>
+</html>

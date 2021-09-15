@@ -1,0 +1,10 @@
+.url-ish {
+    font-family: 'consolas';
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+}
+
+.url-ish i {
+    margin-right: 5px;
+}
