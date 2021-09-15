@@ -1,2 +1,2 @@
-## Latest
-This path is used for testing of experimental features prior to release. Consider this path completely unstable, likely to be broken and/or changed frequently. For the latest version try ```latest/``` or for a specific version try ```v0/```, ```v1/```, ```v0/0/1``` etc.
+## Experimental (unstable)
+This path is used for testing of experimental features prior to release. Consider this path completely unstable, likely to be broken and/or changed frequently. For the latest version try <{{site.url}}/latest/> or for a specific version try <{{site.url}}/v0/>, <{{site.url}}/v1/>, <{{site.url}}/v0/0/2/> etc.

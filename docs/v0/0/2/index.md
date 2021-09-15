@@ -1,2 +1,2 @@
-## Latest
-This path is used for testing of experimental features prior to release. Consider this path completely unstable, likely to be broken and/or changed frequently. For the latest version try ```latest/``` or for a specific version try ```v0/```, ```v1/```, ```v0/0/1``` etc.
+## v0.0.2
+This path contains specifically v0.0.2 of JonjiBot, this should only be used if absolute compatibility with this version is required. For the latest version try <{{site.url}}/latest/>
