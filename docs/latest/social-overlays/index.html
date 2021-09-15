@@ -1,6 +1,7 @@
 <html>
     <head>
         <link href="../../external/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet" />
+        <script src="../utils/pathutils.js"></script>
     </head>
     <body>
         <style>
@@ -22,6 +23,46 @@
                 border-radius: 5px;
             }
         </style>
-        <span class="url-ish"><i class="fab fa-youtube"></i>test-youtube</span>
+        
+        <span class="url-ish"><i id="social-icon" class="fab"></i><span id="social-name">test-youtube</span></span>
+        <span class="help-text" style="display: none;">Looks like you're missing some arguments, check out the docs <a href="how/">here</a></span>
+        <script>
+            (function () {
+                const socials = [
+                    {
+                        type: "youtube",
+                        url: "youtube.com/",
+                        colour: "#f93232"
+                    },
+                    {
+                        type: "twitch",
+                        url: "twitch.tv/",
+                        colour: "#6441a5"
+                    }
+                ]
+
+                const args = getAllUrlParameters();
+                const showHelp = () => {
+                    document.querySelector(".url-ish").style.display = "none";
+                    document.querySelector(".help-text").style.display = "";
+                }
+
+                if (!args.type || !args.name) {
+                    showHelp();
+                    return;
+                }
+                
+                const social = socials.find(s => s.type === args.type);
+                if (!social) {
+                    showHelp();
+                    return;
+                }
+                
+                document.getElementById("social-icon").classList.add("fa-" + args.type);
+                document.getElementById("social-name").innerText = (args.showurl ? social.url : "") + args.name;
+                document.querySelector(".url-ish").style.color = social.colour;
+
+            }());
+        </script>
     </body>
 </html>
