@@ -18,8 +18,4 @@ This source does not require live refresh so it is safe to set the framerate to 
 
 <https://jonginty.github.io/JonjiBot/latest/social-overlays/?type=youtube&name=jonji13>
 
-*testing, just ignore below*
-<{{page.url}}>
-
-
-<{{site.url}}>
+<{{site.url}}{{page.url}}?type=youtube&name=jonji13>
