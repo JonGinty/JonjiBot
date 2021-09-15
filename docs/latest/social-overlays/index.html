@@ -38,6 +38,12 @@
                         type: "twitch",
                         url: "twitch.tv/",
                         colour: "#6441a5"
+                    },
+                    {
+                        type: "facebook",
+                        url: "",
+                        colour: "#4267B2",
+                        icon: "facebook-square"
                     }
                 ]
 
@@ -58,7 +64,7 @@
                     return;
                 }
                 
-                document.getElementById("social-icon").classList.add("fa-" + args.type);
+                document.getElementById("social-icon").classList.add("fa-" + (social.icon || args.type));
                 document.getElementById("social-name").innerText = (args.showurl ? social.url : "") + args.name;
                 document.querySelector(".url-ish").style.color = social.colour;
 
