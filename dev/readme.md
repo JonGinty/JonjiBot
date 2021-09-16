@@ -1,0 +1,2 @@
+# Development Folder
+This folder contains all of the content required to build the application. All source code is contained in the <./src> folder and when build will be written to the <./dist> folder. Any external references will either be stored in the <./node_modules> folder or the <./ref> folder.
