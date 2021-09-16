@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+       
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: 'consolas', monospace;
+            }
+            .url-ish {
+                display: flex;
+                align-items: center;
+                font-size: x-large;
+            }
+
+            .url-ish i {
+                margin-right: 5px;
+            }
+
+            .url-ish {
+                padding: 5px;
+                background-color: rgba(255,255,255,0.8);
+                color: #f93232;
+                border-radius: 5px;
+            }
+        </style>
+        
+        <span class="url-ish"><i id="social-icon" class="fab"></i><span id="social-name">test-youtube</span></span>
+        <span class="help-text" style="display: none;">Looks like you've called this without one or more of the required arguments.<br /> Don't worry, I included a handy guide on how to use this utility <a href="./help.html">here</a></span>
+        <script type="module">
+            import { init } from './socialOverlays.js';
+            init();
+        </script>
+    </body>
+</html>
