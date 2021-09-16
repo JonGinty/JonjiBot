@@ -5,7 +5,7 @@
   "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build",
+    "build": "tsc --build && copyfiles -u 1 ./src/**/*.html ./dist && copyfiles -u 1 ./src/**/*.md ./dist",
     "clean": "tsc --build --clean"
   },
   "author": "Jon Ginty",
