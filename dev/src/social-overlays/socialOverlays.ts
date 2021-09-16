@@ -1,4 +1,5 @@
 import {getAllUrlParameters} from "../lib/pathutils.js";
+import { queryShorthand as q } from "../lib/domutils.js";
 
 export function init() {
     const socials = [
@@ -31,15 +32,10 @@ export function init() {
         },
     ]
 
-    const safeChange = (logic: (el: HTMLElement) => void, el?: HTMLElement | Element | null) => {
-        if (!el) return;
-        logic(el as HTMLElement);
-    }
-
     const args = getAllUrlParameters();
     const showHelp = () => {
-        safeChange(el => el.style.display = "none", document.querySelector(".url-ish"));
-        safeChange(el => el.style.display = "", document.querySelector(".help-text"));
+        q(".url-ish").do(el => el.style.display = "none");
+        q(".help-text").do(el => el.style.display = "");
     }
 
     if (!args.type || !args.name) {
@@ -53,7 +49,7 @@ export function init() {
         return;
     }
     
-    safeChange(el => el.classList.add("fa-" + (social.icon || args.type)), document.querySelector("#social-icon"));
-    safeChange(el => el.innerText = (args.showurl ? social.url : "") + args.name, document.querySelector("#social-name"));
-    safeChange(el => el.style.color = social.colour, document.querySelector(".url-ish"));
+    q("#social-icon").do(el => el.classList.add("fa-" + (social.icon || args.type)));
+    q("#social-name").do(el => el.innerText = (args.showurl ? social.url : "") + args.name);
+    q(".url-ish").do(el => el.style.color = social.colour);
 }
