@@ -1,0 +1,11 @@
+{
+  "name": "jonjibot",
+  "version": "0.0.2",
+  "description": "A collection of various web tools made by *world famous* twitch streamer jonji13 in his spare time.",
+  "main": "dist/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jon Ginty",
+  "license": "MIT"
+}
