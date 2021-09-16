@@ -5,16 +5,21 @@
   "main": "dist/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build && copyfiles -u 1 ./src/**/*.html ./dist && copyfiles -u 1 ./src/**/*.md ./dist",
+    "deploystatic": "copyfiles -u 1 ./src/**/*.html ./dist && copyfiles -u 1 ./src/**/*.md ./dist",
+    "build": "tsc --build && npm run deploystatic && echo build complete",
     "clean": "tsc --build --clean",
-    "serve": "npx http-server ./dist",
-    "buildserve": "npm run build && npm run serve"
+    "serve": "npx http-server ./dist -c-1",
+    "buildserve": "npm run build && npm run serve",
+    "start-watch": "watch \"npm run build\" src",
+    "dev": "concurrently --kill-others \"npm run start-watch\" \"npm run serve\""
   },
   "author": "Jon Ginty",
   "license": "MIT",
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "copyfiles": "^2.4.1",
     "http-server": "^13.0.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "watch": "^0.13.0"
   }
 }
