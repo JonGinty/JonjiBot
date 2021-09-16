@@ -13,6 +13,8 @@
   "author": "Jon Ginty",
   "license": "MIT",
   "devDependencies": {
-    "copyfiles": "^2.4.1"
+    "copyfiles": "^2.4.1",
+    "http-server": "^13.0.2",
+    "typescript": "^4.4.3"
   }
 }
