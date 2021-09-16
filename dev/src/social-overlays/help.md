@@ -1,5 +1,5 @@
 ## Social Overlays
-Currently supports twitch and youtube.
+Currently supports twitch, youtube, twitter, instagram and facebook.
 
 ### How to use
 Create a browser source in OBS (TODO: include instructions how to do this?) and set the url to one of the urls from the examples below.
