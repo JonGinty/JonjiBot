@@ -1,7 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <script src="../utils/pathutils.js"></script>
+       
     </head>
     <body>
         <style>
@@ -21,67 +21,15 @@
             .url-ish {
                 padding: 5px;
                 background-color: rgba(255,255,255,0.8);
-                color: #f93232;
                 border-radius: 5px;
             }
         </style>
         
-        <span class="url-ish"><i id="social-icon" class="fab"></i><span id="social-name">test-youtube</span></span>
+        <span class="url-ish"><i id="social-icon" class="fab"></i><span id="social-name">Error - unfortunately this tool has crashed. Check the developer console for any errors.</span></span>
         <span class="help-text" style="display: none;">Looks like you've called this without one or more of the required arguments.<br /> Don't worry, I included a handy guide on how to use this utility <a href="./help.html">here</a></span>
-        <script>
-            (function () {
-                const socials = [
-                    {
-                        type: "youtube",
-                        url: "youtube.com/",
-                        colour: "#f93232"
-                    },
-                    {
-                        type: "twitch",
-                        url: "twitch.tv/",
-                        colour: "#6441a5"
-                    },
-                    {
-                        type: "facebook",
-                        url: "",
-                        colour: "#4267B2",
-                        icon: "facebook-square"
-                    },
-                    {
-                        type: "twitter",
-                        url: "twitter.com/",
-                        colour: "#1DA1F2",
-                        icon: "twitter-square"
-                    },
-                    {
-                        type: "instagram",
-                        url: "",
-                        colour: "#F77737",
-                    },
-                ]
-
-                const args = getAllUrlParameters();
-                const showHelp = () => {
-                    document.querySelector(".url-ish").style.display = "none";
-                    document.querySelector(".help-text").style.display = "";
-                }
-
-                if (!args.type || !args.name) {
-                    showHelp();
-                    return;
-                }
-                
-                const social = socials.find(s => s.type === args.type);
-                if (!social) {
-                    showHelp();
-                    return;
-                }
-                
-                document.getElementById("social-icon").classList.add("fa-" + (social.icon || args.type));
-                document.getElementById("social-name").innerText = (args.showurl ? social.url : "") + args.name;
-                document.querySelector(".url-ish").style.color = social.colour;
-
-            }());
+        <script type="module">
+            import { init } from './socialOverlays.js';
+            init();
         </script>
     </body>
 </html>
