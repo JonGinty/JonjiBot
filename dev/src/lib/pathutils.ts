@@ -8,3 +8,9 @@ export function getAllUrlParameters(): { [key: string]: string; } {
     }
     return {};
 }
+
+
+export function getUrlParameter(key: string): string {
+    // todo: more efficient implementation
+    return getAllUrlParameters()[key];
+}
