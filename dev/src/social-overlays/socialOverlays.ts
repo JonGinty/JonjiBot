@@ -55,5 +55,5 @@ export function init() {
     
     safeChange(el => el.classList.add("fa-" + (social.icon || args.type)), document.querySelector("#social-icon"));
     safeChange(el => el.innerText = (args.showurl ? social.url : "") + args.name, document.querySelector("#social-name"));
-    safeChange(el => el.style.color = social.colour, document.querySelector(".url-ish"));
+    safeChange(el => el.style.color = args.customcol ?? social.colour, document.querySelector(".url-ish"));
 }
