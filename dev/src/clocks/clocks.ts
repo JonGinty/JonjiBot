@@ -1,8 +1,7 @@
 import { getAllUrlParameters } from '../lib/pathutils.js'
 
 declare var dayjs: any;
-// declare var dayjs_plugin_relativeTime: any;
-// dayjs.extend(dayjs_plugin_relativeTime);
+
 declare var dayjs_plugin_duration: any;
 dayjs.extend(dayjs_plugin_duration);
 
@@ -14,9 +13,10 @@ type clockParams = {
     interval: number;
     format?: string;
     clockEl: HTMLElement;
-    countDownTo?: string;
-    countDownToFormat?: string;
-    countDownDuration?: number 
+    input?: string;
+    inputFormat?: string;
+    inputDuration?: number;
+    inputDurationUnit?: string;
 }
 
 export function init() {
@@ -37,10 +37,11 @@ export function init() {
             startCountup(clockParams);
             break;
         case "countdown":
-            const durationString = pageParams["countdown-duration-seconds"];
-            if (typeof durationString === "string") clockParams.countDownDuration = parseInt(durationString);
-            clockParams.countDownTo = pageParams["countdown-to"]
-            clockParams.countDownToFormat = pageParams["countdown-to-input-format"];
+            const durationString = pageParams["input-duration"];
+            if (typeof durationString === "string") clockParams.inputDuration = parseInt(durationString);
+            clockParams.inputDurationUnit = pageParams["input-duration-unit"]
+            clockParams.input = pageParams["input"]
+            clockParams.inputFormat = pageParams["input-format"];
             countDown(clockParams);
             break;
     }
@@ -65,15 +66,15 @@ function startCountup(params: clockParams) {
 
 function countDown(params: clockParams) {
     let endTime: any;
-    if (params.countDownDuration) {
-        endTime = dayjs().add(params.countDownDuration, "second");
-    } else if (params.countDownTo) {
-        if (params.countDownToFormat) {
-            endTime = dayjs(params.countDownTo, params.countDownToFormat);
+    if (params.inputDuration) {
+        endTime = dayjs().add(params.inputDuration, params.inputDurationUnit || "second");
+    } else if (params.input) {
+        if (params.inputFormat) {
+            endTime = dayjs(params.input, params.inputFormat);
             // TODO: not sure if we can check to see if a date was specified here, we only want to add 1 if only time is specified
             if (dayjs().isAfter(endTime)) endTime = endTime.add(1, "day"); // add day if end date was today
         } else {
-            endTime = dayjs(params.countDownTo);
+            endTime = dayjs(params.input);
         }
     } else {
         throw "missing arguments";
@@ -86,4 +87,3 @@ function countDown(params: clockParams) {
         params.clockEl.innerText = duration.format(params.format);
     }, params.interval)
 }
-
