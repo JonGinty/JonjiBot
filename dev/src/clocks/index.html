@@ -11,7 +11,10 @@
         <p id="clock"></p>        
         <script type="module">
             import { init } from './clocks.js';
-            init();
+            import { ClocksPageParameters} from './pagespec.js';
+            import { LoadAndValidatePageParams } from '../lib/pagehelper.js';
+            const pageParams = LoadAndValidatePageParams(new ClocksPageParameters());
+            init(pageParams);
         </script>
     </body>
 </html>

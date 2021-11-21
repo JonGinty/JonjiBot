@@ -1,4 +1,5 @@
 import { getAllUrlParameters } from '../lib/pathutils.js'
+import { ClocksPageParameters } from './pagespec.js';
 
 declare var dayjs: any;
 
@@ -8,63 +9,90 @@ dayjs.extend(dayjs_plugin_duration);
 declare var dayjs_plugin_customParseFormat: any;
 dayjs.extend(dayjs_plugin_customParseFormat);
 
+// class ClocksPageParameters implements PageParameters {
+//     validate(): string[] {
+        
+//     }
+//     build<T>(): Readonly<Omit<T, 'validate'>> {
+//         throw new Error('Method not implemented.');
+//     }
 
-type clockParams = {
-    interval: number;
-    format?: string;
-    clockEl: HTMLElement;
-    input?: string;
-    inputFormat?: string;
-    inputDuration?: number;
-    inputDurationUnit?: string;
-}
+//     @urlParameter
+//     interval?: number;
 
-export function init() {
-    const pageParams = getAllUrlParameters();
+//     @urlParameter
+//     format?: string;
+
+//     @urlParameter
+//     input?: string;
+
+//     @urlParameter
+//     inputFormat?: string;
+
+//     @urlParameter
+//     inputDurationUnit?: string;
+
+
+// }
+
+
+
+//type clockParams = Readonly<Bind<ClocksPageParameters>>;
+
+// type foo = Readonly<{
+//     [prop in keyof anotherClass]: anotherClass[prop]
+// }>
+
+
+// type clockParams = {
+//     [name: string]: any;
+//     interval: number;
+//     format?: string;
+//     clockEl: HTMLElement;
+//     input?: string;
+//     inputFormat?: string;
+//     inputDuration?: number;
+//     inputDurationUnit?: string;
+// }
+
+
+
+
+export function init(params: ClocksPageParameters) {
     const clock = document.getElementById("clock");
     if (!clock) throw "Clock element not found.";
-    const clockParams: clockParams = {
-        interval: parseInt(pageParams["interval"]) ?? 250,
-        format: pageParams["format"],
-        clockEl: clock,
-    }
-
-    switch (pageParams["mode"]) {
+    
+    switch (params.mode) {
         case "clock":
-            startClockMode(clockParams);
+            startClockMode(params, clock);
             break;
         case "countup":
-            startCountup(clockParams);
+            startCountup(params, clock);
             break;
         case "countdown":
-            const durationString = pageParams["input-duration"];
-            if (typeof durationString === "string") clockParams.inputDuration = parseInt(durationString);
-            clockParams.inputDurationUnit = pageParams["input-duration-unit"]
-            clockParams.input = pageParams["input"]
-            clockParams.inputFormat = pageParams["input-format"];
-            countDown(clockParams);
+            countDown(params, clock);
             break;
     }
 }
 
-function startClockMode(params: clockParams) {
+function startClockMode(params: ClocksPageParameters, clockElement: HTMLElement) {
     window.setInterval(() => {
         //"DD MMM YYYY hh:mm:ss A"
-        params.clockEl.innerText = dayjs().format(params.format);
+        clockElement.innerText = dayjs().format(params.format);
     }, params.interval);
 }
 
-function startCountup(params: clockParams) {
+function startCountup(params: ClocksPageParameters, clockElement: HTMLElement) {
     const startTime = dayjs();
     
     window.setInterval(() => {
         const diff = dayjs().diff(startTime);
         // hh:mm:ss
-        params.clockEl.innerText = dayjs.duration(diff).format(params.format);
+        clockElement.innerText = dayjs.duration(diff).format(params.format);
     }, params.interval);
 }
 
-function countDown(params: clockParams) {
+function countDown(params: ClocksPageParameters, clockElement: HTMLElement) {
     let endTime: any;
     if (params.inputDuration) {
         endTime = dayjs().add(params.inputDuration, params.inputDurationUnit || "second");
@@ -84,6 +112,6 @@ function countDown(params: clockParams) {
         let duration = dayjs.duration(0);
         let now = dayjs();
         if (now.isBefore(endTime)) duration = dayjs.duration(endTime.diff(now));
-        params.clockEl.innerText = duration.format(params.format);
+        clockElement.innerText = duration.format(params.format);
     }, params.interval)
 }

@@ -8,3 +8,5 @@ export function getAllUrlParameters(): { [key: string]: string; } {
     }
     return {};
 }
+
+

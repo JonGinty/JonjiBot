@@ -4,7 +4,8 @@
         "strict": true,
         "moduleResolution": "node",
         "strictNullChecks": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "experimentalDecorators": true
     },
     "include": [
         "src/**/*"
