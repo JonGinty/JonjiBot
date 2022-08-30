@@ -5,15 +5,12 @@
         <script src="https://unpkg.com/dayjs/plugin/duration.js"></script>
         <script src="https://unpkg.com/dayjs/plugin/customParseFormat.js"></script>
 
-   
     </head>
     <body>
-        <p id="clock"></p>        
+        <p id="clock"></p>       
+        <p id="pageParams"></p> 
         <script type="module">
             import { init } from './clocks.js';
-            import { ClocksPageParameters} from './pagespec.js';
-            import { LoadAndValidatePageParams } from '../lib/pagehelper.js';
-            const pageParams = LoadAndValidatePageParams(new ClocksPageParameters());
             init(pageParams);
         </script>
     </body>

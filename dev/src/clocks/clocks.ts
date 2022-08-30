@@ -1,3 +1,4 @@
+import { ensureValid, loadFromUrl } from '../lib/pagehelper.js';
 import { getAllUrlParameters } from '../lib/pathutils.js'
 import { ClocksPageParameters } from './pagespec.js';
 
@@ -56,9 +57,14 @@ dayjs.extend(dayjs_plugin_customParseFormat);
 // }
 
 
+export function init() {
+    const params = new ClocksPageParameters();
+    loadFromUrl(params);
+    ensureValid(params);
+    buildClock(params);
+}
 
-
-export function init(params: ClocksPageParameters) {
+export function buildClock(params: ClocksPageParameters) {
     const clock = document.getElementById("clock");
     if (!clock) throw "Clock element not found.";
     
