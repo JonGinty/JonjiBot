@@ -1,18 +1,16 @@
 import { ensureValid, loadFromUrl } from '../lib/pagehelper.js';
 import { getAllUrlParameters } from '../lib/pathutils.js'
 import { ClocksPageParameters } from './pagespec.js';
+import * as dayjs from 'dayjs';
+import * as duration from 'dayjs/plugin/duration'
+import * as parseFormat from 'dayjs/plugin/customParseFormat';
 
-declare var dayjs: any;
-
-declare var dayjs_plugin_duration: any;
-dayjs.extend(dayjs_plugin_duration);
-
-declare var dayjs_plugin_customParseFormat: any;
-dayjs.extend(dayjs_plugin_customParseFormat);
+dayjs.extend(duration);
+dayjs.extend(parseFormat);
 
 // class ClocksPageParameters implements PageParameters {
 //     validate(): string[] {
-        
+
 //     }
 //     build<T>(): Readonly<Omit<T, 'validate'>> {
 //         throw new Error('Method not implemented.');
@@ -67,7 +65,7 @@ export function init() {
 export function buildClock(params: ClocksPageParameters) {
     const clock = document.getElementById("clock");
     if (!clock) throw "Clock element not found.";
-    
+
     switch (params.mode) {
         case "clock":
             startClockMode(params, clock);
@@ -90,7 +88,7 @@ function startClockMode(params: ClocksPageParameters, clockElement: HTMLElement)
 
 function startCountup(params: ClocksPageParameters, clockElement: HTMLElement) {
     const startTime = dayjs();
-    
+
     window.setInterval(() => {
         const diff = dayjs().diff(startTime);
         // hh:mm:ss
@@ -98,10 +96,11 @@ function startCountup(params: ClocksPageParameters, clockElement: HTMLElement) {
     }, params.interval);
 }
 
+
 function countDown(params: ClocksPageParameters, clockElement: HTMLElement) {
-    let endTime: any;
+    let endTime: dayjs.Dayjs;
     if (params.inputDuration) {
-        endTime = dayjs().add(params.inputDuration, params.inputDurationUnit || "second");
+        endTime = dayjs().add(params.inputDuration, params.inputDurationUnit as dayjs.ManipulateType || "second");
     } else if (params.input) {
         if (params.inputFormat) {
             endTime = dayjs(params.input, params.inputFormat);
